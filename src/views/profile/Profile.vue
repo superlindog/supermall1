@@ -1,15 +1,16 @@
+<!--  -->
 <template>
-    <div>
-        
-    </div>
+  <div>
+<h1>我的</h1>
+  </div>
 </template>
 
 <script>
 export default {
-    name: "Profile"
+    name:"Profile"
 }
 </script>
 
-<style scoped>
-    
+<style  scoped>
+
 </style>

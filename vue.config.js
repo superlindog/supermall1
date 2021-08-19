@@ -1,4 +1,4 @@
-/* module.exports={
+module.exports={
     configureWebpack:{
         resolve:{
             alias:{
@@ -10,4 +10,4 @@
             }
         }
     }
-} */
+}

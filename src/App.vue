@@ -9,14 +9,14 @@
 <script>
 import MainTabBar from './components/content/mainTabbar/MainTabBar.vue'
 export default {
-  name:'app',
-  components:{
-
+ name: 'app',
+  components: {
+    MainTabBar
   }
 }
 </script>
 
 
-    MainTabBar<style  scoped>
-/* @import "assets/css/base.css"; */
+<style  scoped>
+@import "~@/assets/css/base.css";
 </style>
