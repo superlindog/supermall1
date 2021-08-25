@@ -3,7 +3,7 @@
   <div id="home">
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
 
-    <scroll class="content">
+    <scroll class="content" ref="scroll" :probe-type="3" @scroll="contentScroll">
     <home-swiper :banners="banners"></home-swiper>
     <recommend-view :recommends="recommends"></recommend-view>
     <feature-view></feature-view>
@@ -11,7 +11,7 @@
     @tabClick="tabClick"></tab-control>
     <good-list :goods="showGoods"></good-list> 
     </scroll>
-   
+   <back-top @click.native="backClick" v-show="isShowBackTop"></back-top>
   </div>
 </template>
 
@@ -26,6 +26,7 @@ import TabControl from '@/components/content/tabControl/TabControl.vue'
 import {getHomeMultidata,getHomeGoods} from "@/network/home"
 import GoodList from '@/components/content/goods/GoodsList.vue'
 import Scroll from '../../components/common/scroll/Scroll.vue'
+import BackTop from '../../components/content/backTop/backTop.vue'
 
 
 
@@ -39,7 +40,8 @@ export default {
       FeatureView,
       TabControl,
       GoodList,
-      Scroll
+      Scroll,
+        BackTop
     },
     data(){
       return{
@@ -50,7 +52,8 @@ export default {
          'new':{page:0,list:[]},
          'sell':{page:0,list:[]}
        },
-       currentType:'pop'
+       currentType:'pop',
+       isShowBackTop:false
       }
     },
     computed:{
@@ -79,7 +82,12 @@ export default {
 
         }
       },
-      
+      backClick(){
+       this.$refs.scroll.scrollTo(0,0)
+      },
+      contentScroll(position){
+        this.isShowBackTop=(-position.y)>1000
+      },
       /* 网络请求方法 */
       getHomeMultidata(){
         getHomeMultidata().then(res=>{
