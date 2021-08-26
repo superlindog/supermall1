@@ -15,6 +15,10 @@ props:{
     probeType:{
         type:Number,
         default:0
+    },
+    pullUpLoad:{
+        type:Boolean,
+        default:false
     }
 },
 data(){
@@ -25,18 +29,25 @@ data(){
 mounted(){
     this.scroll=new BScroll(this.$refs.wrapper,{
         observeDOM: true,
+        observeImage:true,
         MouseWheel:true,
         click:true,
-        probeType:this.probeType
+        probeType:this.probeType,
+        pullUpLoad: this.pullUpLoad
     })
     this.scroll.on('scroll',(position)=>{
        this.$emit('scroll',position)
     })
-    this.scroll.scrollTo(0,0)
+    this.scroll.on('pullingUp',()=>{
+       this.$emit('pullingUp')
+    })
 },
 methods:{
     scrollTo(x,y,time=300){
         this.scroll.scrollTo(x,y,time)
+    },
+    finishPullUp(){
+        this.scroll.finishPullUp()
     }
 }
 }
