@@ -33,7 +33,6 @@ export default {
         name: "detail",
         params: { id: this.goodsItem.iid },
       });
-     /*  console.log("哈哈哈"); */
     },
   },
 };
