@@ -29,10 +29,22 @@ export default {
       },
     },
   },
+  data() {
+    return {
+      counter: 0,
+      imagesLength: 0,
+    };
+  },
   methods: {
     imgLoad() {
-      this.$emit("detailImgLoad");
-      // console.log("---");
+      if (++this.counter === this.imagesLength) {
+        this.$emit("imagesLoad");
+      }
+    },
+  },
+  watch: {
+    detailInfo() {
+      this.imagesLength = this.detailInfo.detailImage[0].list.length;
     },
   },
 };

@@ -22,15 +22,18 @@ export default {
       },
     },
   },
-  computed:{
-    showImage(){
-      return this.goodsItem.image || this.goodsItem.show.img
-    }
+  computed: {
+    showImage() {
+      return this.goodsItem.image || this.goodsItem.show.img;
+    },
   },
   methods: {
     imageLoad() {
-      if(this.$route.path.indexOf('/home')){
+      /*  this.$bus.$emit('itemImageLoad') */
+      if (this.$route.path.indexOf("/home")) {
         this.$bus.$emit("itemImageLoad");
+      } else if (this.$route.path.indexOf("/detail")) {
+        this.$bus.$emit("detailItemImageLoad");
       }
     },
     itemClick() {
